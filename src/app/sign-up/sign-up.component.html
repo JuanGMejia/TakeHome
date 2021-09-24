@@ -1,0 +1,76 @@
+<section class="sign-up">
+  <h2>Sign up for email updates</h2>
+  <span>*Indicates Required Field</span>
+  <form [formGroup]="signUpForm" class="sign-up__form-group">
+    <div class="form-container-control">
+      <div class="form-container-control__form-control">
+        <span *ngIf="controlHasError('firstName')" class="error-label">First Name is <strong>required</strong></span>
+        <label for="firstName">FIRST NAME*</label>
+        <input type="text" formControlName="firstName" class="input-text" id="firstName" [class.has-error]="controlHasError('firstName')">
+      </div>
+      <div class="form-container-control__form-control">
+        <span *ngIf="controlHasError('lastName')" class="error-label">Last Name is <strong>required</strong></span>
+        <label for="lastName">LAST NAME*</label>
+        <input id="lastName" [class.has-error]="controlHasError('lastName')" type="text" formControlName="lastName" class="input-text">
+      </div>
+    </div>
+
+    <div class="form-container-control">
+      <div class="form-container-control__form-control">
+        <span *ngIf="controlHasError('emailAddress')" class="error-label">Email Address is <strong>required</strong></span>
+        <span *ngIf="emailHasError('emailAddress')" class="error-label">Please enter a valid email address</span>
+        <label for="emailAddress">EMAIL ADDRESS*</label>
+        <input id="emailAddress" [class.has-error]="controlHasError('emailAddress') || emailHasError('emailAddress')" type="text" formControlName="emailAddress" class="input-text">
+      </div>
+      <div class="form-container-control__form-control">
+        <span *ngIf="controlHasError('organization')" class="error-label">Organization is <strong>required</strong></span>
+        <label for="organization">ORGANIZATION*</label>
+        <input id="organization" [class.has-error]="controlHasError('organization')" type="text" formControlName="organization" class="input-text">
+      </div>
+    </div>
+
+    <div class="form-container-control">
+      <div class="form-container-control__form-control" role="listbox">
+        <span *ngIf="hasResidentError" class="error-label">EU Resident is <strong>required</strong></span>
+        <label>EU RESIDENT*</label>
+        <mat-form-field id="custom-select" [class.has-error]="hasResidentError">
+          <mat-select formControlName="euResident">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div role="checkbox" class="form-container-control">
+      <label class="input-checkbox" aria-checked="true">
+        <input class="custom-checkbox" type="checkbox" formControlName="advances">
+        <span class="checkmark">
+          <mat-icon svgIcon="check" *ngIf="signUpForm.get('advances').value"></mat-icon>
+        </span>
+        ADVANCES
+      </label>
+      <label class="input-checkbox" aria-checked="true">
+        <input class="custom-checkbox" type="checkbox" formControlName="alerts">
+        <span class="checkmark">
+          <mat-icon svgIcon="check" *ngIf="signUpForm.get('alerts').value"></mat-icon>
+        </span>
+        ALERTS
+      </label>
+    </div>
+    <label role="checkbox" class="input-checkbox" aria-checked="true">
+      <input class="custom-checkbox" type="checkbox" formControlName="other">
+      <span class="checkmark">
+        <mat-icon svgIcon="check" *ngIf="signUpForm.get('other').value"></mat-icon>
+      </span>
+      OTHER COMMUNICATIONS
+    </label>
+    <label *ngIf="signUpForm.hasError('oneSelected')" class="error-label">You need to select at least one from (advances, alerts and other communications)</label>
+
+    <div role="button" class="actions">
+      <button class="button" [ngClass]="signUpForm.valid ? 'submit' : 'disabled'" (click)="submit()" [disabled]="!signUpForm.valid">Submit</button>
+      <button class="button reset" (click)="reset()">Reset</button>
+    </div>
+  </form>
+</section>

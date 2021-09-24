@@ -1,0 +1,36 @@
+@import './variables.sass'
+
+#custom-select
+  width: 300px
+  border: solid 3px $botticelli
+  background-color: white
+  height: 40px
+  @media (max-width: $breakpoint-tablet)
+    max-height: 30px
+
+
+#custom-select.mat-form-field-appearance-legacy .mat-form-field-infix
+  padding: 0
+
+#custom-select .mat-select-arrow-wrapper
+  background-image: url("./assets/svg/text-expand-arrow.svg")
+  background-repeat: no-repeat
+  background-size: contain
+  background-position: center
+  padding-right: 10px
+
+#custom-select .mat-select-arrow
+  opacity: 0
+
+#custom-select.has-error
+  border: solid 3px $mauvelous
+  background-color: rgb(238, 144, 162, 0.3)
+
+.mat-option
+  border: solid 1px $botticelli
+
+.mat-form-field-underline
+  display: none
+
+.mat-select-value
+  padding-left: 10px

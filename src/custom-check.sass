@@ -1,0 +1,47 @@
+@import './variables.sass'
+.custom-checkbox
+  display: none
+
+input:checked ~ .checkmark
+    background-color: $vividViolet
+    border: none
+
+.checkmark
+  position: relative
+  height: 40px
+  width: 40px
+  background-color: white
+  border: 3px solid $botticelli
+  margin-right: 5px
+  @media (max-width: $breakpoint-tablet)
+    max-height: 25px
+    max-width: 25px
+
+  > mat-icon
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 40px
+    width: 40px
+    @media (max-width: $breakpoint-tablet)
+      max-height: 25px
+      max-width: 25px
+    > svg
+      height: 30px
+      width: 30px
+      color: white
+      @media (max-width: $breakpoint-tablet)
+        max-height: 15px
+        max-width: 15px
+
+.checkmark:after
+  content: ""
+  position: absolute
+  display: none
+
+input:checked ~ .checkmark:after
+  display: block
+
+.error-check
+  padding-left: 20px
+
